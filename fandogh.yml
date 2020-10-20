@@ -1,0 +1,22 @@
+kind: ExternalService
+name: besat-plus
+spec:
+  image: besat-plus
+  # image_pull_policy: Always
+  image_pull_policy: IfNotPresent
+  port: 80
+  allow_http: false
+  replicas: 1
+  volume_browser_enabled: true
+  volume_mounts:
+    - mount_path: /build
+      volume_name: besat
+  resources:
+    memory: 1000Mi
+  domains:
+    - name: www.besatplus.com
+    - name: besatplus.com
+  source:
+    context: .
+    node_version: 12.18.2
+    project_type: nodejs
